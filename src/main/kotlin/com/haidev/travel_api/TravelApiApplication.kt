@@ -2,7 +2,6 @@ package com.haidev.travel_api
 
 import com.haidev.travel_api.data.basic.BasicPaginationResponse
 import com.haidev.travel_api.data.basic.BasicResponse
-import com.haidev.travel_api.data.travel.DataTravel
 import com.haidev.travel_api.data.travel.TravelRequest
 import com.haidev.travel_api.data.user.DataUser
 import com.haidev.travel_api.data.user.LoginRequest
