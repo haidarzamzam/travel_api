@@ -51,4 +51,8 @@ interface TravelRepository : JpaRepository<DataTravel, Long> {
     @Modifying
     @Query(value = "DELETE FROM data_travel WHERE id = :id", nativeQuery = true)
     fun deleteDestination(id: Long): Int
+
+    //return list of type distinct
+    @Query(value = "SELECT DISTINCT type FROM data_travel", nativeQuery = true)
+    fun findType(): List<String>
 }

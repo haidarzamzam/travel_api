@@ -192,6 +192,28 @@ class TravelApiApplication {
         return response
     }
 
+    //get travel type
+    @GetMapping("/travel/type")
+    fun travelType(
+        @RequestHeader("Authorization") authorizationHeader: String?
+    ): ResponseEntity<Any> {
+        if (!isAuthorized(authorizationHeader)) {
+            return unauthorizedResponse()
+        }
+
+        val data = travelRepository.findType()
+
+        val response: ResponseEntity<Any> = ResponseEntity.ok(
+            BasicResponse(
+                success = true,
+                message = "Success",
+                data = data
+            )
+        )
+
+        return response
+    }
+
     private fun isAuthorized(authorizationHeader: String?): Boolean {
         return authorizationHeader == "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
     }
