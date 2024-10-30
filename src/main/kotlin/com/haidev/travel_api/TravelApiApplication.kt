@@ -69,13 +69,21 @@ class TravelApiApplication {
         val data =
             when {
                 type != null && name != null -> travelRepository.findDestinationByTypeAndName(
-                    type,
-                    name,
+                    type.lowercase(),
+                    name.lowercase(),
                     PageRequest.of(page - 1, perPage)
                 )
 
-                type != null -> travelRepository.findDestinationByType(type, PageRequest.of(page - 1, perPage))
-                name != null -> travelRepository.findDestinationByName(name, PageRequest.of(page - 1, perPage))
+                type != null -> travelRepository.findDestinationByType(
+                    type.lowercase(),
+                    PageRequest.of(page - 1, perPage)
+                )
+
+                name != null -> travelRepository.findDestinationByName(
+                    name.lowercase(),
+                    PageRequest.of(page - 1, perPage)
+                )
+
                 else -> travelRepository.findDestination(PageRequest.of(page - 1, perPage))
             }
 
